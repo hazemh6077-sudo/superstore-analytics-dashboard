@@ -1,0 +1,94 @@
+table customer
+	lineageTag: c2026880-33f1-4383-ab05-f21eeb4fbc0c
+
+	column Customer_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 37f4c7b1-7978-494a-950e-4df7066dd1db
+		summarizeBy: none
+		sourceColumn: Customer_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		dataType: string
+		lineageTag: 3de1f8c6-3e1b-4f4f-b4b4-71b6b8578c59
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: a0ac7f1e-c8f8-4a95-ae1c-f7e128f2d6d9
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 3fb3c6ef-6445-4b77-8558-1741ec7124fe
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 4370827b-4f12-40f7-b9dd-e3c5d2957acf
+		dataCategory: County
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 1c42208a-61fd-424e-836b-5df236621502
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: ed319567-99a4-4fee-9398-8e2cf6ba4ebf
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: ef8e94cd-fc56-45c7-9eda-f75619aa3e57
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\skillera tasks\power Bi task 2\archive\SuperStore_Sales_Dataset.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Row ID+O6G3A1:R6", Int64.Type}, {"Order ID", type text}, {"Order Date", type text}, {"Ship Date", type text}, {"Ship Mode", type text}, {"Customer ID", type text}, {"Customer Name", type text}, {"Segment", type text}, {"Country", type text}, {"City", type text}, {"State", type text}, {"Region", type text}, {"Product ID", type text}, {"Category", type text}, {"Sub-Category", type text}, {"Product Name", type text}, {"Sales", type number}, {"Quantity", Int64.Type}, {"Profit", type number}, {"Returns", type text}, {"Payment Mode", type text}, {"ind1", type text}, {"ind2", type text}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "Row ID+O6G3A1:R6", "Order ID", "Order Date", "Ship Date", "Ship Mode", "Customer ID", "Customer Name", "Segment", "Country", "City", "State", "Region", "Product ID", "Category", "Sub-Category", "Product Name", "Sales", "Quantity", "Profit", "Returns", "Payment Mode", "ind1", "ind2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Row ID+O6G3A1:R6"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Index", "Row id"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Customer ID", "Customer Name", "Segment", "Country", "City", "State", "Region"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns", {"Customer ID"}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Index1",{{"Index", "Customer_Key"}}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Renamed Columns1",{"Customer_Key", "Customer ID", "Customer Name", "Segment", "Country", "City", "State", "Region"})
+				in
+				    #"Reordered Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

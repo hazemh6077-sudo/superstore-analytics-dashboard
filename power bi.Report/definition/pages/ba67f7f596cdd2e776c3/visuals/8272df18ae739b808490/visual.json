@@ -1,0 +1,70 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "8272df18ae739b808490",
+  "position": {
+    "x": 0,
+    "y": 716.334826896541,
+    "z": 2000,
+    "height": 363.88285089691311,
+    "width": 859.22076311260639,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Order Count"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Order Count",
+              "nativeQueryRef": "Order Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Returned Orders Count"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Returned Orders Count",
+              "nativeQueryRef": "Returned Orders Count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SuperStore_Sales_Dataset"
+                  }
+                },
+                "Property": "Order Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

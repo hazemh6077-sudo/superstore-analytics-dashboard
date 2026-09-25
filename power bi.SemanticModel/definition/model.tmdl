@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["SuperStore_Sales_Dataset","customer","produts"]
+
+annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"68cb395e-c2e0-4d98-9855-db3d3f8210eb","fromColumnLocalLineageTag":"ea8eb68a-b950-45c8-956c-3d4e9e344b17","toTableLocalLineageTag":"8ab6fe84-da15-42f6-b7c5-75533752e70b","toColumnLocalLineageTag":"7d9b2490-cf84-472d-a35f-4b627439943a"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"68cb395e-c2e0-4d98-9855-db3d3f8210eb","fromColumnLocalLineageTag":"43d8e0b0-50cc-48ae-8141-53196a664e9e","toTableLocalLineageTag":"c2026880-33f1-4383-ab05-f21eeb4fbc0c","toColumnLocalLineageTag":"3de1f8c6-3e1b-4f4f-b4b4-71b6b8578c59"}},"objectType":"Relationship"}]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table SuperStore_Sales_Dataset
+ref table customer
+ref table produts
+ref table DateTableTemplate_6a652910-6c23-4cd3-89d9-f599aabb057d
+ref table LocalDateTable_f147143f-fce8-4b00-a983-e4ded3bd985f
+ref table LocalDateTable_5c3222c9-a192-410a-bfec-d073ebf3b850
+
+ref cultureInfo en-US
+

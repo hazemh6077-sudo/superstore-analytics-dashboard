@@ -1,0 +1,224 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ffe2f37105ac09c2b10d",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1,
+    "height": 185,
+    "width": 1920,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Avg Profit per Order"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Avg Profit per Order",
+              "nativeQueryRef": "Avg Profit per Order"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "SuperStore_Sales_Dataset"
+                        }
+                      },
+                      "Property": "Profit"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(SuperStore_Sales_Dataset.Profit)",
+              "nativeQueryRef": "Sum of Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Profit Margin"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Profit Margin",
+              "nativeQueryRef": "Profit Margin"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Return Rate"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Return Rate",
+              "nativeQueryRef": "Return Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Returned Orders Count"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Returned Orders Count",
+              "nativeQueryRef": "Returned Orders Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SuperStore_Sales_Dataset"
+                  }
+                },
+                "Property": "Avg Profit per Order"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f44265e247ba3dd1577e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Avg Profit per Order"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1cce7f1ab85432091907",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SuperStore_Sales_Dataset"
+                  }
+                },
+                "Property": "Profit"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "259ade8bcd042dacb925",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Profit Margin"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b6bb58beb76e39db10d4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Return Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d74e31e1b8dbc3ec3716",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Returned Orders Count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ba842f16e7932c70de46",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

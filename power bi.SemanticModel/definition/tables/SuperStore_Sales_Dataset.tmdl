@@ -1,0 +1,221 @@
+table SuperStore_Sales_Dataset
+	lineageTag: 68cb395e-c2e0-4d98-9855-db3d3f8210eb
+
+	measure 'Total Sales' = SUM('SuperStore_Sales_Dataset'[Sales])
+		lineageTag: be0c91a1-54f6-4b2e-9c09-8b1ce7e2b95e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit' = SUM('SuperStore_Sales_Dataset'[Profit])
+		lineageTag: 06f5dd3b-e4d5-4a2f-b861-2199164060eb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin' = DIVIDE([Total Profit], [Total Sales], 0)
+		lineageTag: 5efc41cf-b20d-413e-aca7-a492361470cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Order Count' = DISTINCTCOUNT('SuperStore_Sales_Dataset'[Order ID])
+		formatString: 0
+		lineageTag: a8c965eb-30ca-49b1-af8e-b8441ef91c81
+
+	measure 'Returned Orders Count' = COUNTROWS(FILTER('SuperStore_Sales_Dataset', NOT(ISBLANK('SuperStore_Sales_Dataset'[Returns]))))
+		formatString: 0
+		lineageTag: 438a8714-73c5-4cdc-b9e9-2863dd40aa66
+
+	measure 'Return Rate' = DIVIDE([Returned Orders Count], COUNTROWS('SuperStore_Sales_Dataset'), 0)
+		lineageTag: 07cb92fc-08bf-427e-aee4-eeaa0ad2fb98
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Profit per Order' = DIVIDE([Total Profit], [Order Count], 0)
+		lineageTag: da4c9430-753d-4852-9c7d-5ce3b981bf08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Shipping Days' = AVERAGE('SuperStore_Sales_Dataset'[Shipping Days])
+		lineageTag: 99f31f37-8546-4ab1-a3af-5804ede7fd8d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Row id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 27edd132-519d-4901-8041-5631a1595ce9
+		summarizeBy: sum
+		sourceColumn: Row id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: 71bd2267-5036-4d82-9d86-1383a1334404
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: string
+		lineageTag: 71fa41df-0b95-48cb-a214-59274ba46b59
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship Date'
+		dataType: string
+		lineageTag: c9056995-902a-48d8-9d38-b10e54976a00
+		summarizeBy: none
+		sourceColumn: Ship Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship Mode'
+		dataType: string
+		lineageTag: 5837ca48-5a6a-4b97-a9e7-70b0d15be44c
+		summarizeBy: none
+		sourceColumn: Ship Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		dataType: string
+		lineageTag: 43d8e0b0-50cc-48ae-8141-53196a664e9e
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product ID'
+		dataType: string
+		lineageTag: ea8eb68a-b950-45c8-956c-3d4e9e344b17
+		summarizeBy: none
+		sourceColumn: Product ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		lineageTag: cd8926ce-8d0a-42ef-ada8-29f2a7c8dddf
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d800b2d-0608-454b-b2e1-268a583e6d81
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Returns
+		dataType: string
+		lineageTag: 71a0ab49-58df-4587-b5d6-b719a1c2b31c
+		summarizeBy: none
+		sourceColumn: Returns
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payment Mode'
+		dataType: string
+		lineageTag: 907366e8-1bbb-483e-874b-35aa858368d3
+		summarizeBy: none
+		sourceColumn: Payment Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'customer.Customer_Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 93e4c3ce-6f1e-4ed7-afad-01b9e02b93f1
+		summarizeBy: none
+		sourceColumn: customer.Customer_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'produts.Product_Key'
+		dataType: string
+		lineageTag: 20e53f5d-e822-482b-8f7a-4da1d18dd8c1
+		summarizeBy: none
+		sourceColumn: produts.Product_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date Fixed' = DATEVALUE('SuperStore_Sales_Dataset'[Order Date])
+		formatString: General Date
+		lineageTag: 331f7cb3-7a56-4080-bcb3-36347873ce6d
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: f19873cf-3ea2-4072-8db6-9123898ebcd0
+			defaultHierarchy: LocalDateTable_f147143f-fce8-4b00-a983-e4ded3bd985f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship Date Fixed' = DATEVALUE('SuperStore_Sales_Dataset'[Ship Date])
+		formatString: General Date
+		lineageTag: b24f97df-d53e-4322-ab50-017ec2e9ac42
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 507ca925-242d-4703-8e44-d699193f7b31
+			defaultHierarchy: LocalDateTable_5c3222c9-a192-410a-bfec-d073ebf3b850.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Days' = DATEDIFF('SuperStore_Sales_Dataset'[Order Date Fixed], 'SuperStore_Sales_Dataset'[Ship Date Fixed], DAY)
+		formatString: 0
+		lineageTag: 8ba4ed98-204c-4a37-8559-9b51415cbcf5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit
+		dataType: double
+		lineageTag: 708ee40d-fd1b-437c-900e-44f15bfd57ae
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition SuperStore_Sales_Dataset = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\skillera tasks\power Bi task 2\archive\SuperStore_Sales_Dataset.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Row ID+O6G3A1:R6", Int64.Type}, {"Order ID", type text}, {"Order Date", type text}, {"Ship Date", type text}, {"Ship Mode", type text}, {"Customer ID", type text}, {"Customer Name", type text}, {"Segment", type text}, {"Country", type text}, {"City", type text}, {"State", type text}, {"Region", type text}, {"Product ID", type text}, {"Category", type text}, {"Sub-Category", type text}, {"Product Name", type text}, {"Sales", type number}, {"Quantity", Int64.Type}, {"Profit", type number}, {"Returns", type text}, {"Payment Mode", type text}, {"ind1", type text}, {"ind2", type text}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "Row ID+O6G3A1:R6", "Order ID", "Order Date", "Ship Date", "Ship Mode", "Customer ID", "Customer Name", "Segment", "Country", "City", "State", "Region", "Product ID", "Category", "Sub-Category", "Product Name", "Sales", "Quantity", "Profit", "Returns", "Payment Mode", "ind1", "ind2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Row ID+O6G3A1:R6"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Index", "Row id"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Row id", "Order ID", "Order Date", "Ship Date", "Ship Mode", "Customer ID", "Product ID", "Category", "Sub-Category", "Product Name", "Sales", "Quantity", "Profit", "Returns", "Payment Mode", "ind1", "ind2"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Other Columns","#N/A","0",Replacer.ReplaceText,{"Returns"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Replaced Value",{"ind1", "ind2"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Removed Columns1",{"Row id", "Order ID", "Order Date", "Ship Date", "Ship Mode", "Customer ID", "Product ID", "Sales", "Quantity", "Profit", "Returns", "Payment Mode"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Other Columns1", {"Customer ID"}, customer, {"Customer ID"}, "customer", JoinKind.LeftOuter),
+				    #"Expanded customer" = Table.ExpandTableColumn(#"Merged Queries", "customer", {"Customer_Key"}, {"customer.Customer_Key"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded customer", {"Product ID"}, produts, {"Product ID"}, "produts", JoinKind.LeftOuter),
+				    #"Expanded produts" = Table.ExpandTableColumn(#"Merged Queries1", "produts", {"Product_Key"}, {"produts.Product_Key"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded produts", "Profit.1", each Number.Abs([Profit])),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Added Custom",{"Profit"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns2",{{"Profit.1", "Profit"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Profit", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

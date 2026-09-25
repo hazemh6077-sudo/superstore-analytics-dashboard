@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "4daac93cec121802c690",
+  "position": {
+    "x": 1095.4588443231678,
+    "y": 179.08370672413525,
+    "z": 3000,
+    "height": 335.30566365370004,
+    "width": 824.92813842075066,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produts"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "produts.Category",
+              "nativeQueryRef": "Category",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Returned Orders Count"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Returned Orders Count",
+              "nativeQueryRef": "Returned Orders Count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SuperStore_Sales_Dataset"
+                  }
+                },
+                "Property": "Returned Orders Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Power BI Local Settings & Cache
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# OS generated files
+.DS_Store
+Thumbs.db

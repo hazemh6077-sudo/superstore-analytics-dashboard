@@ -1,0 +1,18 @@
+relationship ecf32873-e240-f65a-1d54-c9914ca64530
+	fromColumn: SuperStore_Sales_Dataset.'produts.Product_Key'
+	toColumn: produts.Product_Key
+
+relationship 5ccd0c54-03a0-7005-70da-5b6c854f311a
+	fromColumn: SuperStore_Sales_Dataset.'customer.Customer_Key'
+	toColumn: customer.Customer_Key
+
+relationship f19873cf-3ea2-4072-8db6-9123898ebcd0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: SuperStore_Sales_Dataset.'Order Date Fixed'
+	toColumn: LocalDateTable_f147143f-fce8-4b00-a983-e4ded3bd985f.Date
+
+relationship 507ca925-242d-4703-8e44-d699193f7b31
+	joinOnDateBehavior: datePartOnly
+	fromColumn: SuperStore_Sales_Dataset.'Ship Date Fixed'
+	toColumn: LocalDateTable_5c3222c9-a192-410a-bfec-d073ebf3b850.Date
+

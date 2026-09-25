@@ -1,0 +1,67 @@
+table produts
+	lineageTag: 8ab6fe84-da15-42f6-b7c5-75533752e70b
+
+	column Product_Key
+		dataType: string
+		lineageTag: 744e9d98-8611-4814-ad39-ef8bc6e43c8d
+		summarizeBy: none
+		sourceColumn: Product_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product ID'
+		dataType: string
+		lineageTag: 7d9b2490-cf84-472d-a35f-4b627439943a
+		summarizeBy: none
+		sourceColumn: Product ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 740f2c8a-79dd-4047-b053-a33cd6389c4b
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Category
+		dataType: string
+		lineageTag: 3702910a-bbe1-4081-9977-190e459b647c
+		summarizeBy: none
+		sourceColumn: Sub-Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 466e4bdb-4915-4407-ad78-283df6bf6910
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition produts = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\skillera tasks\power Bi task 2\archive\SuperStore_Sales_Dataset.csv"),[Delimiter=",", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Row ID+O6G3A1:R6", Int64.Type}, {"Order ID", type text}, {"Order Date", type text}, {"Ship Date", type text}, {"Ship Mode", type text}, {"Customer ID", type text}, {"Customer Name", type text}, {"Segment", type text}, {"Country", type text}, {"City", type text}, {"State", type text}, {"Region", type text}, {"Product ID", type text}, {"Category", type text}, {"Sub-Category", type text}, {"Product Name", type text}, {"Sales", type number}, {"Quantity", Int64.Type}, {"Profit", type number}, {"Returns", type text}, {"Payment Mode", type text}, {"ind1", type text}, {"ind2", type text}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "Row ID+O6G3A1:R6", "Order ID", "Order Date", "Ship Date", "Ship Mode", "Customer ID", "Customer Name", "Segment", "Country", "City", "State", "Region", "Product ID", "Category", "Sub-Category", "Product Name", "Sales", "Quantity", "Profit", "Returns", "Payment Mode", "ind1", "ind2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Row ID+O6G3A1:R6"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Index", "Row id"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Product ID", "Category", "Sub-Category", "Product Name"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns", {"Product ID"}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Index1",{{"Index", "Product_Key"}}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Renamed Columns1",{"Product_Key", "Product ID", "Category", "Sub-Category", "Product Name"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Reordered Columns1",{{"Product_Key", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

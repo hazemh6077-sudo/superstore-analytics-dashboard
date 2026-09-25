@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "007e64e2c67970114a34",
+  "position": {
+    "x": 0,
+    "y": 610,
+    "z": 2,
+    "height": 470,
+    "width": 950,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Ship Mode"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Ship Mode",
+              "nativeQueryRef": "Ship Mode",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SuperStore_Sales_Dataset"
+                    }
+                  },
+                  "Property": "Average Shipping Days"
+                }
+              },
+              "queryRef": "SuperStore_Sales_Dataset.Average Shipping Days",
+              "nativeQueryRef": "Average Shipping Days"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "SuperStore_Sales_Dataset"
+                  }
+                },
+                "Property": "Average Shipping Days"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e5e944e1361919569705",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Ship Mode"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8d46997e92b311243bcc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "SuperStore_Sales_Dataset"
+              }
+            },
+            "Property": "Average Shipping Days"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
