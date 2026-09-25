@@ -115,7 +115,8 @@ pip install -r requirements.txt
 # 2. شغل التطبيق
 streamlit run app.py
 ```
-هيفتح معاك مباشرة على الرابط: `http://localhost:8501`.
+هيفتح معاك مباشرة على الرابط: `http://localhost:8501
+& https://hazemh6077-sudo-superstore-analytics-dashboard-app-msubrh.streamlit.app/`.
 
 ---
 
@@ -128,4 +129,7 @@ streamlit run app.py
 
 ---
 
-**صُنِع بشغف وإتقان لخدمة اتخاذ القرار المبني على البيانات 🎯**
+**صُنِع بشغف وإتقان لخدمة اتخاذ القرار المبني على البيانات 🎯*
+LinkedIn: [www.linkedin.com/in/hazem-mohamed-abdo-033251422]
+phone-number +20: [01060167704]
+Email: [ hazemh6077@gmail.com]*
